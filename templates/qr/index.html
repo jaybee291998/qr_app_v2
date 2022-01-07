@@ -71,7 +71,7 @@
 <script src="{% static 'js/qr-scanner.umd.min.js' %}"></script>
 
 <script>
-    QrScanner.WORKER_PATH = '../js/qr-scanner-worker.min.js';
+    QrScanner.WORKER_PATH = "{% static 'js/qr-scanner-worker.min.js' %}";
     const video = document.getElementById('qr-video');
     const camHasCamera = document.getElementById('cam-has-camera');
     const camList = document.getElementById('cam-list');
