@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,10 +69,10 @@
 <b>Detected QR code: </b>
 <span id="file-qr-result">None</span>
 {% load static %}
-<script src="{% static 'js/qr-scanner.umd.min.js' %}"></script>
-
-<script>
+<script type="module">
+    import QrScanner from "{% static 'js/qr-scanner.min.js' %}";
     QrScanner.WORKER_PATH = "{% static 'js/qr-scanner-worker.min.js' %}";
+
     const video = document.getElementById('qr-video');
     const camHasCamera = document.getElementById('cam-has-camera');
     const camList = document.getElementById('cam-list');
