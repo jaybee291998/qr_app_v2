@@ -10,6 +10,8 @@ from django.contrib.auth.decorators import login_required
 from .models import ContactInformation, Log
 from .forms import RegistrationForm
 from .serializers import ContactSerializer
+
+from rest_framework.response import Response
 # Create your views here.
 
 def qr_scanner_view(request):
@@ -35,6 +37,6 @@ def get_qr_code(request):
 		contact = ContactInformation.objects.get(email=email, phone=phone)
 		serializer = ContactSerializer(contact)
 
-		return serializer.data
+		return Response(serializer.data)
 	return JsonResponse({'message':'no data'})
 
