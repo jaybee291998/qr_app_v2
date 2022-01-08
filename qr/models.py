@@ -9,3 +9,6 @@ class ContactInfomation(models.Model):
     email               = models.CharField(max_length=64)
     birthdate           = models.DateFiels()
     qr_code             = models.CharField(max_length=6)
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
