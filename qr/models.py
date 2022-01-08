@@ -13,7 +13,7 @@ class ContactInfomation(models.Model):
     address             = models.CharField(max_length=128)
     phone               = models.CharField(max_length=11)
     email               = models.CharField(max_length=64)
-    birthdate           = models.DateFiels()
+    birthdate           = models.DateField()
     qr_code             = models.CharField(max_length=6)
 
     def __str__(self):
