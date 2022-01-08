@@ -7,8 +7,7 @@ class ContactInfomation(models.Model):
     class Sex(models.TextChoices):
         MALE            = 'M', _('Male')
         FEMALE          = 'F', _('Female')
-
-	first_name 			= models.CharField(max_length=32)
+    first_name 			= models.CharField(max_length=32)
     last_name           = models.CharField(max_length=32)
     sex                 = models.CharField(max_length=1, choices=Sex.choices, default=Sex.MALE)
     address             = models.CharField(max_length=128)
