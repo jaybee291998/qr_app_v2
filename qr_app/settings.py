@@ -41,6 +41,8 @@ INSTALLED_APPS = [
 
     # my apps
     'qr',
+
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
