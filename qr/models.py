@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils.transalation import gettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 class ContactInfomation(models.Model):
