@@ -19,15 +19,22 @@
 	<div id="information-div">
 		
 	</div>
+	<div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
+
 	<script type="text/javascript" src="{% static 'js/qrcode.min.js' %}"></script>
 	<script type="text/javascript">
 		let email = document.getElementById('email');
 		let phone = document.getElementById('phone');
 		let button = document.getElementById('submit');
+		let qrcode = new QRCode(document.getElementById("qrcode"), {
+			width : 100,
+			height : 100
+		});
 
 		button.onclick = async () => {
 			const res = await fetch('{{domain}}?email='+email.value+'&phone='+phone.value)
 			const data = await res.json()
+			qrcode.makeCode(data['qr_code'])
 			console.log(data)
 		}
 
