@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from qr_app.base_classes import BaseCreatView
+from qr_app.base_classes import BaseCreateView
 
 from django.urls import reverse_lazy
 
