@@ -22,6 +22,9 @@ class ContactCreateView(BaseCreateView):
 	form_class = RegistrationForm
 
 def get_qr_code_view(request):
+	context = {
+		'domain':reverse_lazy('get_qr_code')
+	}
 	return render(request, 'qr/get_qr_code.html', {})
 
 def get_qr_code(request):
