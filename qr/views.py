@@ -37,6 +37,6 @@ def get_qr_code(request):
 		contact = ContactInformation.objects.get(email=email, phone=phone)
 		serializer = ContactSerializer(contact)
 
-		return Response(serializer.data)
+		return JsonResponse(serializer.data)
 	return JsonResponse({'message':'no data'})
 
