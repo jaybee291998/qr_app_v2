@@ -13,7 +13,7 @@ from .forms import RegistrationForm
 def qr_scanner_view(request):
 	return render(request, 'qr/index.html', {})
 
-class ContactCreateView(BaseCreatView):
+class ContactCreateView(BaseCreateView):
 	model = ContactInformation
 	template_name = 'qr/registration.html'
 	success_url = reverse_lazy('qr_scanner')
