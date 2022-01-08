@@ -6,7 +6,7 @@ class DateTimeInput(forms.DateTimeInput):
 	input_type='datetime-local'
 
 class RegistrationForm(forms.ModelForm):
-	birthdate 		= froms.DateField(widget=DateTimeInput)
+	birthdate 		= forms.DateField(widget=DateTimeInput)
 	class Meta:
 		model = ContactInformation
 		fields = [
