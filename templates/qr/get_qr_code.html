@@ -1,0 +1,35 @@
+{% exntends 'base.html' %}
+{% block title %}
+	Get QR Code
+{% endblock %}
+{% loadstatic %}
+{% block content %}
+	<h1>Get your QR code</h1>
+	<div id="form-div">
+		<p>Please provide your email and phone number that you used in your registration</p>
+
+		<label for="email">Email</label>
+		<input type="text" name="email" id="email"><br>
+
+		<label for="phone">Phone</label>
+		<input type="text" name="phone" id="phone"><br>
+
+		<button id="submit">get qr code</button>		
+	</div>
+	<div id="information-div">
+		
+	</div>
+	<script type="text/javascript" src="{% static 'js/qrcode.min.js' %}"></script>
+	<script type="text/javascript">
+		let email = document.getElementById('email');
+		let phone = document.getElementById('phone');
+		let button = document.getElementById('submit');
+
+		button.onclick = () => {
+			console.log(email.value);
+			console.log(phone.value);
+		}
+
+	</script>
+
+{% endblock %}
