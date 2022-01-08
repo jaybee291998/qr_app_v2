@@ -3,7 +3,8 @@ from django.utils.transalation import gettext_lazy as _
 
 # Create your models here.
 class ContactInfomation(models.Model):
-    class Sex(modes.TextChoices):
+
+    class Sex(models.TextChoices):
         MALE            = 'M', _('Male')
         FEMALE          = 'F', _('Female')
 
