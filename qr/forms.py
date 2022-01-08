@@ -3,7 +3,7 @@ from django.contrib.admin import widgets
 from .models import ContactInformation
 
 class DateTimeInput(forms.DateInput):
-	input_type='date-local'
+	input_type='date'
 
 class RegistrationForm(forms.ModelForm):
 	birthdate 		= forms.DateField(widget=DateTimeInput)
