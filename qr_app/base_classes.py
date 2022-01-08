@@ -13,6 +13,6 @@ class BaseCreateView(CreateView):
 def generate_qr_string():
 	qr_str = ''
 	for _ in range(6):
-		qr_str += chr(radnom.randrange(32, 128, 1))
+		qr_str += chr(random.randrange(32, 128, 1))
 
 	return qr_str
