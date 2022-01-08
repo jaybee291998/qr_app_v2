@@ -25,7 +25,7 @@ def get_qr_code_view(request):
 	context = {
 		'domain':reverse_lazy('get_qr_code_api')
 	}
-	return render(request, 'qr/get_qr_code.html', {})
+	return render(request, 'qr/get_qr_code.html', context)
 
 def get_qr_code(request):
 	if request.method == 'GET':
