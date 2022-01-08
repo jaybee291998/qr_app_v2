@@ -11,5 +11,6 @@ class ContactSerializer(serializers.ModelSerializer):
 			'address',
 			'phone',
 			'email',
-			'birthdate'
+			'birthdate',
+			'qr_code',
 		]
