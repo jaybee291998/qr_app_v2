@@ -30,9 +30,12 @@
 		<button id="cancel">Cancel</button>
 	</div>
 
-	<div id="personal-info-div">
-		
+	<div id="p-div">
+		<div id="personal-info-div">
+		</div>
+		<button id="scan-another">Scan Another</button>		
 	</div>
+
 	<div id="error-div">
 	</div>
 	{% load static %}
@@ -74,6 +77,7 @@
 
 	    		const data = await post_update('{{domain}}', 'POST', logData, csrftoken);
 	    		displayErrorMessage("Successfully added a Log!!");
+	    		displayErrorMessage(data['error'])
 	    		displayContactInfo(data);
 	    		console.log(data);
 	    		showPersonalInfo();
@@ -141,17 +145,23 @@
 	    	showScanner();
 	    })
 
+	    document.getElementById('scan-another').addEventListener('click', () => {
+	    	showScanner();
+	    })
+
 	    const errorDiv = document.getElementById('error-div');
 	    const personalInfoDiv = document.getElementById('personal-info-div');
 	    const scannerDiv = document.getElementById('scanner-div');
 	    const temperatureDiv = document.getElementById('temperature-div');
+	    const pDiv = document.getElementById('p-div');
 
 	    function showScanner(){
+	    	scanner.start();
 	    	scannerDiv.style.display = 'block';
 
 	    	temperatureDiv.style.display = 'none';
 
-	    	personalInfoDiv.style.display = 'none';
+	    	pDiv.style.display = 'block';
 
 	    }
 
@@ -159,12 +169,11 @@
 	    	temperatureDiv.style.display = 'block';
 
 	    	scannerDiv.style.display = 'none';
-	    	personalInfoDiv.style.display = 'none';
+	    	pDiv.style.display = 'block';
 	    }
 
 	    function showPersonalInfo(){
-	    	personalInfoDiv.style.display = 'block';
-
+	    	pDiv.style.display = 'block';
 	    	scannerDiv.style.display = 'none';
 	    	temperatureDiv.style.display = 'none';
 	    }
