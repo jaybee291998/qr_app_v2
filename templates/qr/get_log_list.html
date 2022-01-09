@@ -41,7 +41,8 @@
 				const qr_code = log['qr_data'];
 				const contact = log_data['contacts'][qr_code];
 				properties.forEach((property, j) => {
-					const property_value = contact[property];
+					// const property_value = contact[property];
+					console.log(contact);
 					const cell = row.insertCell(j);
 					cell.innerHTML = property_value;
 				});
