@@ -34,10 +34,11 @@
 		});
 
 		button.onclick = async () => {
-			const res = await fetch('{{domain}}?email='+email.value+'&phone='+phone.value)
-			const data = await res.json()
-			qrcode.makeCode(data['qr_code'])
-			console.log(data)
+			const res = await fetch('{{domain}}?email='+email.value+'&phone='+phone.value);
+			const data = await res.json();
+			qrcode.makeCode(data['qr_code']);
+			displayContactInfo(data);
+			console.log(data);
 		}
 
 		function displayContactInfo(data){
