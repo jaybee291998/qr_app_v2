@@ -44,12 +44,6 @@
 	<br>
 	<button id="start-button">Start</button>
 	<button id="stop-button">Stop</button>
-	<hr>
-
-	<h1>Scan from File:</h1>
-	<input type="file" id="file-selector">
-	<b>Detected QR code: </b>
-	<span id="file-qr-result">None</span>
 	{% load static %}
 	<script src="{% static 'js/qr-scanner.umd.min.js' %}"></script>
 
@@ -107,6 +101,7 @@
 	    // for debugging
 	    window.scanner = scanner;
 
+	    // show the scan region of the qr code scanner
 	    document.getElementById('show-scan-region').addEventListener('change', (e) => {
 	        const input = e.target;
 	        const label = input.parentNode;
@@ -114,7 +109,9 @@
 	        scanner.$canvas.style.display = input.checked ? 'block' : 'none';
 	    });
 
+	    // get the inversion mode
 	    document.getElementById('inversion-mode-select').addEventListener('change', event => {
+	    	// set the inversion mode of the qr scanner
 	        scanner.setInversionMode(event.target.value);
 	    });
 
@@ -127,24 +124,13 @@
 	    });
 
 	    document.getElementById('start-button').addEventListener('click', () => {
+	    	// start the qr scanner
 	        scanner.start();
 	    });
 
 	    document.getElementById('stop-button').addEventListener('click', () => {
+	    	// stop the qr scanner
 	        scanner.stop();
 	    });
-
-	    // ####### File Scanning #######
-
-	    fileSelector.addEventListener('change', event => {
-	        const file = fileSelector.files[0];
-	        if (!file) {
-	            return;
-	        }
-	        QrScanner.scanImage(file)
-	            .then(result => setResult(fileQrResult, result))
-	            .catch(e => setResult(fileQrResult, e || 'No QR code found.'));
-	    });
-
 	</script>
 {% endblock %}
