@@ -59,8 +59,14 @@ class LogList(APIView):
 		serializer = LogSerializer(data=request.data)
 		if serializer.is_valid():
 			qr_code = serializer.validated_data['qr_code']
-			print(qr_code)
-			serializer.save()
-			return Response(serializer.data, status=status.HTTP_201_CREATED)
+			contact_info = ContactInformation.objects.get(qr_code=qr_code)
+			if contact_info.exists():
+				contact_serializer = ContactSerializer(contact_info)
+				serializer.save()
+				return Response(contact_serializer.data, status=status.HTTP_201_CREATED)
+			error = {
+				'errors': 'QR code is not registered'
+			}
+			return JsonResponse(error)
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
