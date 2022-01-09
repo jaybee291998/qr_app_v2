@@ -28,7 +28,8 @@
 
 		setData();
 
-		const properties = ['first_name', 'last_name', 'sex', 'phone', 'email', 'address'];
+		const contact_properties = ['first_name', 'last_name', 'sex', 'phone', 'email', 'address'];
+		const log_properties = ['temperature', 'date'];
 		function createTable(){
 			let table = document.createElement('TABLE');
 			table.className = 'table table-striped';
@@ -40,12 +41,21 @@
 				// row.onclick = some_function
 				const qr_code = log['qr_code'];
 				const contact = log_data['contacts'][qr_code];
-				properties.forEach((property, j) => {
+				contact_properties.forEach((property, j) => {
 					const property_value = contact[property];
 					// console.log(contact);
 					const cell = row.insertCell(j);
 					cell.innerHTML = property_value;
 				});
+
+				log_properties.forEach((property, j) => {
+					const property_value = log[property];
+					// console.log(contact);
+					const cell = row.insertCell(j);
+					cell.innerHTML = property_value;
+				});
+
+
 			});
 			tableDiv.innerHTML = '';
 			tableDiv.appendChild(table);
