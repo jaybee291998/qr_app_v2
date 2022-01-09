@@ -81,11 +81,15 @@ class LogList(APIView):
 def get_log_list_api(request):
 	date_entry = date.today()
 	logs = Log.objects.filter(date__year=date_entry.year, date__month=date_entry.month, date__day=date_entry.day)
+	serializer = LogSerializer(logs, many=True)
+
 	qr_codes = list(set([log.qr_code for log in logs]))
 	contacts = {}
 	for qr_code in qr_codes:
-		contacts[qr_code] = ContactInformation.objects.get(qr_code=qr_code)
-	serializer = LogSerializer(logs, many=True)
+		contact = ContactInformation.objects.get(qr_code=qr_code)
+		contact_serializer = ContactSerializer(contact)
+		contacts[qr_code] = contact_serializer.data
+
 	data = {
 		'contacts':contacts,
 		'logs': serializer.data
