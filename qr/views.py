@@ -36,6 +36,12 @@ def get_qr_code_view(request):
 	}
 	return render(request, 'qr/get_qr_code.html', context)
 
+def get_log_list_view(request):
+	context = {
+		'domain':reverse_lazy('get_log_list_api')
+	}
+	return render(request, 'qr/get_log_list.html', context)
+
 def get_qr_code(request):
 	if request.method == 'GET':
 		email = request.GET.get('email')
@@ -46,6 +52,8 @@ def get_qr_code(request):
 
 		return JsonResponse(serializer.data)
 	return JsonResponse({'message':'no data'})
+
+
 
 # api
 # api for posting log data
@@ -69,4 +77,15 @@ class LogList(APIView):
 			}
 			return JsonResponse(error, status=status.HTTP_400_BAD_REQUEST)
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+def get_log_list_api(request):
+	date = date.today()
+	logs = Log.objects.filter(date__year=date.year, date__month=date.month, date__day=date.day)
+	qr_codes = list(set([log['qr_code'] for log in logs]))
+
+	data = {
+		'qr_codes':qr_codes
+	}
+
+	return JsonResponse(data)
 
