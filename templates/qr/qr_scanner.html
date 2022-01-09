@@ -76,11 +76,15 @@
 	    		}
 
 	    		const data = await post_update('{{domain}}', 'POST', logData, csrftoken);
-	    		displayErrorMessage("Successfully added a Log!!");
-	    		displayErrorMessage(data['error'])
-	    		displayContactInfo(data);
+	    		if(data['errors']!=null){
+		    		displayErrorMessage("Successfully added a Log!!");
+		    		displayContactInfo(data);
+		    		showPersonalInfo();
+	    		}else{	
+		    		displayErrorMessage(data['errors'])
+	    		}
 	    		console.log(data);
-	    		showPersonalInfo();
+
 	    	}else{
 	    		displayErrorMessage("Invalid QR: The format of the QR code is not supported")	
 	    	}
