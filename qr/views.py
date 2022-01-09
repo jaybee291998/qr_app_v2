@@ -58,6 +58,8 @@ class LogList(APIView):
 	def post(self, request, format=None):
 		serializer = LogSerializer(data=request.data)
 		if serializer.is_valid():
+			qr_code = serializer.validated_data['qr_code']
+			print(qr_code)
 			serializer.save()
 			return Response(serializer.data, status=status.HTTP_201_CREATED)
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
