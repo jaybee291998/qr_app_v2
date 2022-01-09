@@ -12,23 +12,40 @@
 	        Show scan region
 	    </label>
 	</div>
-
+	<div id="temperature-div">
+		<label for="temperature">Temperature</label>
+		<input type="text" name="temperature" id="temperature">
+		<button id="post">Post</button>
+		<button id="cancel">Cancel</button>
+	</div>
 	<b>Detected QR code: </b>
 	<span id="cam-qr-result">None</span>
 	<br>
 	<b>Last detected at: </b>
 	<span id="cam-qr-result-timestamp"></span>
 	<br>
+	<div id="error-div">
+		
+	</div>
 	<button id="start-button">Start</button>
 	<button id="stop-button">Stop</button>
 	{% load static %}
 	<script src="{% static 'js/qr-scanner.umd.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
 
 	<script>
 	    QrScanner.WORKER_PATH = "{% static 'js/qr-scanner-worker.min.js' %}";
 	    const video = document.getElementById('qr-video');
 	    const camQrResult = document.getElementById('cam-qr-result');
 	    const camQrResultTimestamp = document.getElementById('cam-qr-result-timestamp');
+	    const errorDiv = document.getElementById('error-div');
+	    const temperature = document.getElementById('temperature');
+
+	    const postBtn = document.getElementById('post');
+
+	    const csrftoken = getCookie('csrftoken');
+
+	    let current_qr;
 
 	    function setResult(label, result) {
 	        label.textContent = result;
@@ -36,8 +53,34 @@
 	        label.style.color = 'teal';
 	        clearTimeout(label.highlightTimeout);
 	        label.highlightTimeout = setTimeout(() => label.style.color = 'inherit', 100);
+	        current_qr = result;
+	        // stop the scanner 
+	        scanner.stop();
 	    }
 
+	    async function postLog(){
+	    	if(isQRValid(qr_result)){
+	    		let logData = {
+	    			qr_code: current_qr,
+	    			temperature: temperature.value
+	    		}
+
+	    		const data = await post_update('{{domain}}', 'POST', logData, csrftoken);
+
+	    		console.log(data);
+	    	}else{
+	    		displayErrorMessage("Invalid QR: The format of the QR code is not supported")	
+	    	}
+	    }
+
+	    function isQRValid(qr){
+	    	if(qr.length == 6) return true;
+	    	return false;
+	    }
+
+	    function displayErrorMessage(message){
+	    	errorDiv.innerHTML = message;
+	    }
 	    // ####### Web Cam Scanning #######
 
 	    const scanner = new QrScanner(video, result => setResult(camQrResult, result), error => {
@@ -67,5 +110,7 @@
 	    	// stop the qr scanner
 	        scanner.stop();
 	    });
+
+	    postBtn.onlick = postLog;
 	</script>
 {% endblock %}
