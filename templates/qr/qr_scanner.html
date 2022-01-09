@@ -76,12 +76,12 @@
 	    		}
 
 	    		const data = await post_update('{{domain}}', 'POST', logData, csrftoken);
-	    		if(data['errors']!=null){
+	    		if(data.hasOwnProperty('errors')){
+	    			displayErrorMessage(data['errors'])
+	    		}else{	
 		    		displayErrorMessage("Successfully added a Log!!");
 		    		displayContactInfo(data);
 		    		showPersonalInfo();
-	    		}else{	
-		    		displayErrorMessage(data['errors'])
 	    		}
 	    		console.log(data);
 
