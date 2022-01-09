@@ -20,7 +20,7 @@ def qr_scanner_view(request):
 class ContactCreateView(BaseCreateView):
 	model = ContactInformation
 	template_name = 'qr/registration.html'
-	success_url = reverse_lazy('qr_scanner')
+	success_url = reverse_lazy('get_qr_code')
 	form_class = RegistrationForm
 
 def get_qr_code_view(request):
