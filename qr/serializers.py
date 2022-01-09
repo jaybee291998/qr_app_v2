@@ -18,4 +18,4 @@ class ContactSerializer(serializers.ModelSerializer):
 class LogSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Log
-		fields = ['qr_code', 'temperature']
+		fields = ['qr_code', 'temperature', 'date']
