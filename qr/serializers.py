@@ -12,7 +12,7 @@ class ContactSerializer(serializers.ModelSerializer):
 			'phone',
 			'email',
 			'birthdate',
-			'qr_code',
+			'qr_code'
 		]
 
 class LogSerializer(serializers.ModelSerializer):
