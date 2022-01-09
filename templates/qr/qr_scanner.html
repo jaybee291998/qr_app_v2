@@ -13,22 +13,20 @@
 	    </label>
 	    <button id="start-button">Start</button>
 		<button id="stop-button">Stop</button>
-	</div>
 
-	<div id="temperature-div">
-		<label for="temperature">Temperature</label>
-		<input type="text" name="temperature" id="temperature">
-		<button id="post">Post</button>
-		<button id="cancel">Cancel</button>
-	</div>
-
-	<div id="qr-info-div">
 		<b>Detected QR code: </b>
 		<span id="cam-qr-result">None</span>
 		<br>
 		<b>Last detected at: </b>
 		<span id="cam-qr-result-timestamp"></span>
 		<br>
+	</div>
+
+	<div id="temperature-div">
+		<label for="temperature">Temperature</label>
+		<input type="text" name="temperature" id="temperature"><br>
+		<button id="post">Post</button>
+		<button id="cancel">Cancel</button>
 	</div>
 
 	<div id="personal-info-div">
@@ -45,11 +43,10 @@
 	    const video = document.getElementById('qr-video');
 	    const camQrResult = document.getElementById('cam-qr-result');
 	    const camQrResultTimestamp = document.getElementById('cam-qr-result-timestamp');
-	    const errorDiv = document.getElementById('error-div');
-	    const personalInfoDiv = document.getElementById('personal-info-div')
 	    const temperature = document.getElementById('temperature');
 
 	    const postBtn = document.getElementById('post');
+	    const cancelBtn = document.getElementById('cancel');
 
 	    const csrftoken = getCookie('csrftoken');
 
@@ -64,6 +61,7 @@
 	        current_qr = result;
 	        // stop the scanner 
 	        scanner.stop();
+	        showTempForm();
 	    }
 
 	    async function postLog(){
@@ -77,6 +75,7 @@
 	    		displayErrorMessage("Successfully added a Log!!");
 	    		displayContactInfo(data);
 	    		console.log(data);
+	    		showPersonalInfo();
 	    	}else{
 	    		displayErrorMessage("Invalid QR: The format of the QR code is not supported")	
 	    	}
@@ -135,5 +134,39 @@
 	    });
 
 	    postBtn.addEventListener('click', (e) => postLog());
+	    cancelBtn.addEventListener('click', (e) => {
+	    	scanner.start();
+	    	showScanner();
+	    })
+
+	    const errorDiv = document.getElementById('error-div');
+	    const personalInfoDiv = document.getElementById('personal-info-div');
+	    const scannerDiv = document.getElementById('scanner-div');
+	    const temperatureDiv = document.getElementById('temperature-div');
+
+	    function showScanner(){
+	    	scannerDiv.style.display = 'block';
+
+	    	temperatureDiv.style.display = 'none';
+
+	    	personalInfoDiv.style.display = 'none';
+
+	    }
+
+	    function showTempForm(){
+	    	temperatureDiv.style.display = 'block';
+
+	    	scannerDiv.style.display = 'none';
+	    	personalInfoDiv.style.display = 'none';
+	    }
+
+	    function showPersonalInfo(){
+	    	personalInfoDiv.style.display = 'block';
+
+	    	scannerDiv.style.display = 'none';
+	    	temperatureDiv.style.display = 'none';
+	    }
+
+	    showScanner();
 	</script>
 {% endblock %}
