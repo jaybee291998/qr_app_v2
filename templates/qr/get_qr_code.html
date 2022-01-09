@@ -43,7 +43,8 @@
 
 		function displayContactInfo(data){
 			informationDiv.innerHTML = '';
-			let name = document.createElement('p').innerHTML = "Name: ${data['first_name']} ${data['last_name']}";
+			let name = document.createElement('p');
+			name.innerHTML = "Name: ${data['first_name']} ${data['last_name']}";
 			informationDiv.appendChild(name);
 		}
 
