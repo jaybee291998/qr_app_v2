@@ -16,16 +16,18 @@
 
 		<button id="submit">get qr code</button>		
 	</div>
+	<div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
 	<div id="information-div">
 		
 	</div>
-	<div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
 
 	<script type="text/javascript" src="{% static 'js/qrcode.min.js' %}"></script>
 	<script type="text/javascript">
-		let email = document.getElementById('email');
-		let phone = document.getElementById('phone');
-		let button = document.getElementById('submit');
+		let email 			= document.getElementById('email');
+		let phone 			= document.getElementById('phone');
+		let button 			= document.getElementById('submit');
+		let informationDiv 	= document.getElementById('informatio-div');
+
 		let qrcode = new QRCode(document.getElementById("qrcode"), {
 			width : 100,
 			height : 100
@@ -36,6 +38,12 @@
 			const data = await res.json()
 			qrcode.makeCode(data['qr_code'])
 			console.log(data)
+		}
+
+		function displayContactInfo(data){
+			informationDiv.innerHTML = '';
+			let name = document.createElement('p').innerHTML = "Name: ${data['first_name']} ${data['last_name']}";
+			informationDiv.appendChild(name);
 		}
 
 	</script>
