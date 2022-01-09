@@ -85,7 +85,7 @@ def get_log_list_api(request):
 	contacts = {}
 	for qr_code in qr_codes:
 		contacts[qr_code] = ContactInformation.objects.get(qr_code=qr_code)
-
+	serializer = LogSerializer(logs, many=True)
 	data = {
 		'contacts':contacts,
 		'logs': serializer.data
