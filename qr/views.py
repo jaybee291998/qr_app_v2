@@ -79,8 +79,8 @@ class LogList(APIView):
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 def get_log_list_api(request):
-	date = date.today()
-	logs = Log.objects.filter(date__year=date.year, date__month=date.month, date__day=date.day)
+	date_entry = date.today()
+	logs = Log.objects.filter(date__year=date_entry.year, date__month=date_entry.month, date__day=date_entry.day)
 	qr_codes = list(set([log['qr_code'] for log in logs]))
 
 	data = {
