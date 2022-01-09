@@ -3,7 +3,7 @@ from .views import qr_scanner_view, ContactCreateView
 from . import views as v
 
 urlpatterns = [
-    path('index/', qr_scanner_view, name='qr_scanner'),
+    path('qr_scanner/', qr_scanner_view, name='qr_scanner'),
     path('registration/', ContactCreateView.as_view(), name='registration'),
     path('get_qr_code', v.get_qr_code_view, name='get_qr_code'),
     path('get_qr_code_api/', v.get_qr_code, name='get_qr_code_api'),

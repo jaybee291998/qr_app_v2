@@ -19,7 +19,10 @@ from rest_framework import status
 # Create your views here.
 
 def qr_scanner_view(request):
-	return render(request, 'qr/index.html', {})
+	context = {
+		'domain': reverse_lazy('log_list_api')
+	}
+	return render(request, 'qr/qr_scanner.html', context)
 
 class ContactCreateView(BaseCreateView):
 	model = ContactInformation
