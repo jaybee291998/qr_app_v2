@@ -4,31 +4,38 @@
 {% endblock %}
 {% block content %}
 	<h1>QR Scanner</h1>
-	<div>
+	<div id="scanner-div">
 	    <video id="qr-video"></video>
 	    <br>
 	    <label>
 	        <input id="show-scan-region" type="checkbox">
 	        Show scan region
 	    </label>
+	    <button id="start-button">Start</button>
+		<button id="stop-button">Stop</button>
 	</div>
+
 	<div id="temperature-div">
 		<label for="temperature">Temperature</label>
 		<input type="text" name="temperature" id="temperature">
 		<button id="post">Post</button>
 		<button id="cancel">Cancel</button>
 	</div>
-	<b>Detected QR code: </b>
-	<span id="cam-qr-result">None</span>
-	<br>
-	<b>Last detected at: </b>
-	<span id="cam-qr-result-timestamp"></span>
-	<br>
-	<div id="error-div">
+
+	<div id="qr-info-div">
+		<b>Detected QR code: </b>
+		<span id="cam-qr-result">None</span>
+		<br>
+		<b>Last detected at: </b>
+		<span id="cam-qr-result-timestamp"></span>
+		<br>
+	</div>
+
+	<div id="personal-info-div">
 		
 	</div>
-	<button id="start-button">Start</button>
-	<button id="stop-button">Stop</button>
+	<div id="error-div">
+	</div>
 	{% load static %}
 	<script src="{% static 'js/qr-scanner.umd.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
@@ -66,7 +73,7 @@
 	    		}
 
 	    		const data = await post_update('{{domain}}', 'POST', logData, csrftoken);
-
+	    		displayErrorMessage("Successfully added a Log!!");
 	    		console.log(data);
 	    	}else{
 	    		displayErrorMessage("Invalid QR: The format of the QR code is not supported")	
