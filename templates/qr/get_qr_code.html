@@ -42,10 +42,14 @@
 		}
 
 		function displayContactInfo(data){
-			informationDiv.innerHTML = '';
-			let name = document.createElement('p');
-			name.innerHTML = "Name: " + data['first_name'] + " " + data['last_name'];
-			informationDiv.appendChild(name);
+			informationDiv.innerHTML = `
+				<b>Name</b>: {data['first_name']} {data['last_name']}<br>
+				<b>Sex</b>: {data['sex']}<br>
+				<b>Address</b>: {data['address']}<br>
+				<b>Phone</b>: {data['phone']}<br>
+				<b>Email</b>: {data['email']}<br>
+				<b>Birthdate</b>: {data['birthdate']}<br>
+			`;
 		}
 
 	</script>
