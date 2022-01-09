@@ -12,7 +12,10 @@
 		let log_data;
 
 		async function setData(){
-			log_data = await get_data('{{domain}}');
+			const res = await fetch('{{domain}}');
+			const data = await res.json();
+
+			log_data = data;
 		}
 
 		document.getElementById('print').addEventListener('click', () => {
