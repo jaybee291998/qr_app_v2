@@ -84,7 +84,8 @@ def get_log_list_api(request):
 	qr_codes = list(set([log.qr_code for log in logs]))
 
 	data = {
-		'qr_codes':qr_codes
+		'qr_codes':qr_codes,
+		'logs': logs
 	}
 
 	return JsonResponse(data)
