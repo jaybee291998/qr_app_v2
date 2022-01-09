@@ -5,10 +5,14 @@
 
 {% block content %}
 	<h1>Log List</h1>
-
+	<button id="print">yeah</button>
 	{% load static %}
 	<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
 	<script type="text/javascript">
-		console.log(get_data('{{domain}}'))
+		const log_data = get_data('{{domain}}');
+
+		document.getElementById('print').addEventListener('click', () => {
+			console.log(log_data);
+		})
 	</script>
 {% endblock %}
