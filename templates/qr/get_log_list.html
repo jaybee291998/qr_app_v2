@@ -38,11 +38,11 @@
 				row.id = i;
 				// a function to handle when its clicked
 				// row.onclick = some_function
-				const qr_code = log['qr_data'];
+				const qr_code = log['qr_code'];
 				const contact = log_data['contacts'][qr_code];
 				properties.forEach((property, j) => {
-					// const property_value = contact[property];
-					console.log(contact);
+					const property_value = contact[property];
+					// console.log(contact);
 					const cell = row.insertCell(j);
 					cell.innerHTML = property_value;
 				});
