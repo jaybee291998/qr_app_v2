@@ -6,6 +6,9 @@
 {% block content %}
 	<h1>Log List</h1>
 	<button id="print">yeah</button>
+	<div id="table-div">
+		
+	</div>
 	{% load static %}
 	<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
 	<script type="text/javascript">
@@ -19,9 +22,34 @@
 		}
 
 		document.getElementById('print').addEventListener('click', () => {
+			createTable();
 			console.log(log_data);
 		})
 
 		setData();
+
+		const properties = ['first_name', 'last_name', 'sex', 'phone', 'email', 'address', 'birthdate'];
+		function createTable(){
+			let table = document.createElement('TABLE');
+			table.className = 'table table-striped';
+
+			log_data['logs'].forEach((log, i) => {
+				let row = table.insertRow(i);
+				row.id = i;
+				// a function to handle when its clicked
+				// row.onclick = some_function
+				const qr_code = log['qr_data'];
+				const contact = log_data['contacts'][qr_code];
+				properties.forEach((property, j) => {
+					const property_value = contact[property];
+					const cell = row.insertCell(j);
+					cell.innerHTML = property_value;
+				});
+			});
+			tableDiv.innerHTML = '';
+			tableDiv.appendChild(table);
+		}
+
+		const tableDiv = document.getElementById('table-div');
 	</script>
 {% endblock %}
