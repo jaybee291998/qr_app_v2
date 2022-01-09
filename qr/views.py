@@ -60,7 +60,8 @@ class LogList(APIView):
 		if serializer.is_valid():
 			qr_code = serializer.validated_data['qr_code']
 			contact_info = ContactInformation.objects.get(qr_code=qr_code)
-			if contact_info.exists():
+			print(contact_info)
+			if contact_info is not None:
 				contact_serializer = ContactSerializer(contact_info)
 				serializer.save()
 				return Response(contact_serializer.data, status=status.HTTP_201_CREATED)
