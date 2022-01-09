@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}
+	Log List
+{% endblock %}
+
+{% block content %}
+	<h1>Log List</h1>
+
+	{% load static %}
+	<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+	<script type="text/javascript">
+		console.log(get_data('{{domain}}'))
+	</script>
+{% endblock %}
