@@ -26,5 +26,5 @@ class RegistrationForm(forms.ModelForm):
 		email 			= cleaned_data['email']
 		phone 			= cleaned_data['phone']
 		if ContactInformation.objects.filter(first_name=first_name, last_name=last_name, email=email, phone=phone).exists():
-			raise ValidationError(f'The user is already registered in the system.')
+			raise forms.ValidationError(f'The user is already registered in the system.')
 		return super(RegistrationForm, self).clean(*args, **kwargs)
