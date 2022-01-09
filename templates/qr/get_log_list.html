@@ -5,7 +5,6 @@
 
 {% block content %}
 	<h1>Log List</h1>
-	<button id="print">yeah</button>
 	<div id="table-div">
 		
 	</div>
@@ -19,12 +18,11 @@
 			const data = await res.json();
 
 			log_data = data;
-		}
 
-		document.getElementById('print').addEventListener('click', () => {
 			createTable();
 			console.log(log_data);
-		})
+
+		}
 
 		setData();
 
@@ -48,7 +46,7 @@
 					const cell = row.insertCell(j);
 					cell.innerHTML = property_value;
 				});
-				
+
 				contact_properties.forEach((property, j) => {
 					const property_value = contact[property];
 					// console.log(contact);
