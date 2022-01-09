@@ -82,10 +82,12 @@ def get_log_list_api(request):
 	date_entry = date.today()
 	logs = Log.objects.filter(date__year=date_entry.year, date__month=date_entry.month, date__day=date_entry.day)
 	qr_codes = list(set([log.qr_code for log in logs]))
-	serializer = LogSerializer(logs, many=True)
+	contacts = {}
+	for qr_code in qr_codes:
+		contacts[qr_code] = ContactInformation.objects.get(qr_code=qr_code)
 
 	data = {
-		'qr_codes':qr_codes,
+		'contacts':contacts,
 		'logs': serializer.data
 	}
 
