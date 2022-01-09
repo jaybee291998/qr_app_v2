@@ -41,12 +41,6 @@
 				// row.onclick = some_function
 				const qr_code = log['qr_code'];
 				const contact = log_data['contacts'][qr_code];
-				contact_properties.forEach((property, j) => {
-					const property_value = contact[property];
-					// console.log(contact);
-					const cell = row.insertCell(j);
-					cell.innerHTML = property_value;
-				});
 
 				log_properties.forEach((property, j) => {
 					const property_value = log[property];
@@ -54,8 +48,13 @@
 					const cell = row.insertCell(j);
 					cell.innerHTML = property_value;
 				});
-
-
+				
+				contact_properties.forEach((property, j) => {
+					const property_value = contact[property];
+					// console.log(contact);
+					const cell = row.insertCell(j);
+					cell.innerHTML = property_value;
+				});
 			});
 			tableDiv.innerHTML = '';
 			tableDiv.appendChild(table);
