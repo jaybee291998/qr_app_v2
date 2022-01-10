@@ -18,7 +18,7 @@ from django.urls import path, include
 from qr.views import home_view
 
 urlpatterns = [
-    path('/', home_view, name='home'),
+    path('', home_view, name='home'),
     path('admin/', admin.site.urls),
     path('qr/', include('qr.urls')),
 ]
