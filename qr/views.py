@@ -20,7 +20,8 @@ from rest_framework import status
 
 def qr_scanner_view(request):
 	context = {
-		'domain': reverse_lazy('log_list_api')
+		'domain': reverse_lazy('log_list_api'),
+		'home_domain': reverse_lazy('home')
 	}
 	return render(request, 'qr/qr_scanner.html', context)
 
@@ -32,13 +33,15 @@ class ContactCreateView(BaseCreateView):
 
 def get_qr_code_view(request):
 	context = {
-		'domain':reverse_lazy('get_qr_code_api')
+		'domain':reverse_lazy('get_qr_code_api'),
+		'home_domain': reverse_lazy('home')
 	}
 	return render(request, 'qr/get_qr_code.html', context)
 
 def get_log_list_view(request):
 	context = {
-		'domain':reverse_lazy('get_log_list_api')
+		'domain':reverse_lazy('get_log_list_api'),
+		'home_domain': reverse_lazy('home')
 	}
 	return render(request, 'qr/get_log_list.html', context)
 
@@ -52,6 +55,17 @@ def get_qr_code(request):
 
 		return JsonResponse(serializer.data)
 	return JsonResponse({'message':'no data'})
+
+# view for home
+def home_view(request):
+	context = {
+		'qr_scanner_domain': reverse_lazy('qr_scanner'),
+		'registration_domain': reverse_lazy('registration'),
+		'get_qr_code_domain': reverse_lazy('get_qr_code'),
+		'log_list' : reverse_lazy('get_log_list')
+	}
+
+	return render(request, 'qr/home.html', context)
 
 
 

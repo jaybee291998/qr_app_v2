@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}
+	Home
+{% endblock %}
+
+{% block content %}
+	<h1>Home</h1>
+	<div class="flex-container">
+		<div class="card flex-item">
+		  <div class="card-body">
+		    <h5 class="card-title">Registration</h5>
+		    <h6 class="card-subtitle mb-2 text-muted">app</h6>
+		    <p class="card-text">register your contact information here</p>
+		    <a href="{{registration_domain}}" class="card-link">Go to Registration</a>
+		  </div>
+		</div>
+	</div>
+
+	<div class="flex-container">
+		<div class="card flex-item">
+		  <div class="card-body">
+		    <h5 class="card-title">Get QR code</h5>
+		    <h6 class="card-subtitle mb-2 text-muted">app</h6>
+		    <p class="card-text">After registration you can get your QR code here</p>
+		    <a href="{{get_qr_code_domain}}" class="card-link">Get QR Code</a>
+		  </div>
+		</div>
+	</div>
+
+	<div class="flex-container">
+		<div class="card flex-item">
+		  <div class="card-body">
+		    <h5 class="card-title">QR Scanner</h5>
+		    <h6 class="card-subtitle mb-2 text-muted">app</h6>
+		    <p class="card-text">scan your QR code here</p>
+		    <a href="{{qr_scanner_domain}}" class="card-link">Go to QR Scanner</a>
+		  </div>
+		</div>
+	</div>
+
+	<div class="flex-container">
+		<div class="card flex-item">
+		  <div class="card-body">
+		    <h5 class="card-title">Logs</h5>
+		    <h6 class="card-subtitle mb-2 text-muted">app</h6>
+		    <p class="card-text">all logs are here</p>
+		    <a href="{{log_list}}" class="card-link">Go to Logs</a>
+		  </div>
+		</div>
+	</div>
+
+{% endblock %}
