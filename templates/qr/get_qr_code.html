@@ -60,9 +60,9 @@
 			div.innerHTML = "";
 			for(let i = 0; i < labels.length; i++){
 				let b = document.createElement("B");
-				b.setText(data[i]+": ")
+				b.textContent(data[i]+": ")
 				let p = document.createElement("P");
-				p.setText(data[i]);
+				p.textContent(data[i]);
 				let br = document.createElement("BR");
 				div.appendChild(b);
 				div.appendChild(p);
