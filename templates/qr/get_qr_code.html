@@ -60,13 +60,11 @@
 			div.innerHTML = "";
 			for(let i = 0; i < labels.length; i++){
 				let b = document.createElement("B");
-				b.innerText = data[i]+": ";
+				b.innerText = label[i]+": ";
 				let p = document.createElement("P");
 				p.textContent = data[i];
-				let br = document.createElement("BR");
 				div.appendChild(b);
 				div.appendChild(p);
-				div.appendChild(br);
 			}
 		}
 
