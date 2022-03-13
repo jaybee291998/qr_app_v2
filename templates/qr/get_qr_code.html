@@ -23,6 +23,11 @@
 	<a href="{{home_domain}}" class="btn btn-success">Home</a>
 
 	<script type="text/javascript" src="{% static 'js/qrcode.min.js' %}"></script>
+
+
+	<script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+
 	<script type="text/javascript">
 		let email 			= document.getElementById('email');
 		let phone 			= document.getElementById('phone');
@@ -30,10 +35,21 @@
 		let informationDiv 	= document.getElementById('information-div');
 
 		window.addEventListener("load", () => {
+			mapboxgl.accessToken = "pk.eyJ1IjoiamF5dmVlMjkxOTk4IiwiYSI6ImNsMHA1YzlhNzAzcHczZG5pMHd6dDZjZ3YifQ.MiDcnGldWwcAs2aTm1lQvA";
 			let succeed = (pos) =>{
 				console.log(pos.coords);
 				console.log(pos.coords.longitude);
 				console.log(pos.coords.latitude);
+				let map = new mapboxgl.Map({
+					container: "map",
+					style: "mapboc://style/mapbox/streets-v11",
+					center: [pos.coords.longitude, pos.coords.latitude],
+					zoom: 13
+				})
+
+				let marker = new mapboxgl.Marker()
+				 .setLngLat[pos.coords.longitude, pos.coords.latitude]
+				 .addTo(map);
 			};
 
 			let failure = (err) => {
@@ -89,5 +105,8 @@
 		}
 
 	</script>
+	<div id="map">
+		
+	</div>
 
 {% endblock %}
