@@ -29,6 +29,26 @@
 		let button 			= document.getElementById('submit');
 		let informationDiv 	= document.getElementById('information-div');
 
+		window.addEventListener("load", () => {
+			let succeed = (pos) =>{
+				console.log(pos.coords);
+				console.log(pos.coords.longitude);
+				console.log(pos.coords.latitude);
+			};
+
+			let failure = (err) => {
+				console.log(err);
+			};
+
+			let options = {
+				enableHighAccuracy: true,
+				timeout: 5000,
+				maximumAge: 0
+			};
+
+			navigator.geolocation.getCurrentPosition(succeed, failure, options);
+		});
+
 		let qrcode = new QRCode(document.getElementById("qrcode"), {
 			width : 100,
 			height : 100
