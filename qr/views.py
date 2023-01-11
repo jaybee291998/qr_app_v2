@@ -57,7 +57,12 @@ def get_qr_code(request):
 			contact = None
 		if contact is not None:
 			serializer = ContactSerializer(contact)
-			qr_request_serializer = QRRequestSerializer(contact=contact, latitude=latitude, longitude=longitude)
+			d = {
+				'latitude': latitude,
+				'longitude': longitude
+			}
+			print(d)
+			qr_request_serializer = QRRequestSerializer(data=d)
 			qr_request_serializer.save()
 			return JsonResponse(serializer.data)
 	return JsonResponse({'message':'no data'})
