@@ -9,9 +9,9 @@ from django.http import JsonResponse
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 
-from .models import ContactInformation, Log
+from .models import ContactInformation, Log, QRRequest
 from .forms import RegistrationForm
-from .serializers import ContactSerializer, LogSerializer
+from .serializers import ContactSerializer, LogSerializer, QRRequestSerializer
 
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -49,11 +49,17 @@ def get_qr_code(request):
 	if request.method == 'GET':
 		email = request.GET.get('email')
 		phone = request.GET.get('phone')
-
-		contact = ContactInformation.objects.get(email=email, phone=phone)
-		serializer = ContactSerializer(contact)
-
-		return JsonResponse(serializer.data)
+		latitude = request.GET.get('latitude')
+		longitude = request.GET.get('longitude')
+		try:
+			contact = ContactInformation.objects.get(email=email, phone=phone)
+		except ContactInformation.DoesNotExist:
+			contact = None
+		if contact is not None:
+			serializer = ContactSerializer(contact)
+			qr_request_serializer = QRRequestSerializer(contact=contact, latitude=latitude, longitude=longitude)
+			qr_request_serializer.save()
+			return JsonResponse(serializer.data)
 	return JsonResponse({'message':'no data'})
 
 # view for home
