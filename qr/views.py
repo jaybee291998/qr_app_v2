@@ -63,7 +63,8 @@ def get_qr_code(request):
 			}
 			print(d)
 			qr_request_serializer = QRRequestSerializer(data=d)
-			qr_request_serializer.save()
+			if qr_request_serializer.is_valid():
+				qr_request_serializer.save()
 			return JsonResponse(serializer.data)
 	return JsonResponse({'message':'no data'})
 
