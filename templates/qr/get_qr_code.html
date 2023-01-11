@@ -33,6 +33,8 @@
 		let phone 			= document.getElementById('phone');
 		let button 			= document.getElementById('submit');
 		let informationDiv 	= document.getElementById('information-div');
+		let latitude = 0;
+		let longitude = 0;
 
 		window.addEventListener("load", () => {
 			mapboxgl.accessToken = "pk.eyJ1IjoiamF5dmVlMjkxOTk4IiwiYSI6ImNsMHA1YzlhNzAzcHczZG5pMHd6dDZjZ3YifQ.MiDcnGldWwcAs2aTm1lQvA";
@@ -40,6 +42,8 @@
 				console.log(pos.coords);
 				console.log(pos.coords.longitude);
 				console.log(pos.coords.latitude);
+				latitude = pos.coords.latitude;
+				longitude = pos.coords.longitude;
 				let map = new mapboxgl.Map({
 					container: "map",
 					style: "mapbox://style/mapbox/streets-v11",
@@ -71,7 +75,7 @@
 		});
 
 		button.onclick = async () => {
-			const res = await fetch('{{domain}}?email='+email.value+'&phone='+phone.value);
+			const res = await fetch('{{domain}}?email='+email.value+'&phone='+phone.value+'&latitude='+latitude+'&longitude='+longitude);
 			const data = await res.json();
 			qrcode.makeCode(data['qr_code']);
 			displayContactInfo(data);
