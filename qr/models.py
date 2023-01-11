@@ -29,8 +29,8 @@ class Log(models.Model):
 
 class QRRequest(models.Model):
     contact         = models.ForeignKey(ContactInformation, related_name="qr_request", on_delete=models.CASCADE, null=True)
-    lat             = models.CharField(max_length=100)
-    lon             = models.CharField(max_length=100)
+    # lat             = models.CharField(max_length=100)
+    # lon             = models.CharField(max_length=100)
     timestamp       = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
