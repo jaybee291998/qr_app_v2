@@ -59,8 +59,8 @@ def get_qr_code(request):
 			serializer = ContactSerializer(contact)
 			d = {
 				'contact': contact,
-				'latitude': latitude,
-				'longitude': longitude
+				'latitude': int(latitude),
+				'longitude': int(longitude)
 			}
 			print(d)
 			qr_request_serializer = QRRequestSerializer(data=d)
