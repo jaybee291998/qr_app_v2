@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'qr_app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'clydeebennet$qr__app_db',
+        'NAME': 'clydeebennet$qr__app_db_2',
         'USER': 'clydeebennet',
         'PASSWORD': 'Wubbalubbadubdub291998',
         'HOST': 'clydeebennet.mysql.pythonanywhere-services.com',
