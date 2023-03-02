@@ -23,4 +23,5 @@ def task(request):
 				}
 			}
 			return Response(payload, status=status.HTTP_200_OK)
+	return Response({"message":"OK"})
 
