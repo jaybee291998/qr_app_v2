@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     # my apps
     'qr',
+    'smssync',
 
     'rest_framework',
 ]

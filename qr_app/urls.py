@@ -21,4 +21,5 @@ urlpatterns = [
     path('', home_view, name='home'),
     path('admin/', admin.site.urls),
     path('qr/', include('qr.urls')),
+    path('smssync/', include('smssync.urls'))
 ]
