@@ -12,7 +12,7 @@ def task(request):
 			payload = {
 				"payload":{
 					"task":"send",
-					"secret_key": "123456789",
+					"secret": "123456789",
 					"messages": [
 						{
 							"to": "+639975772141",
