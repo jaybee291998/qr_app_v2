@@ -22,7 +22,7 @@ def task(request):
 						{
 							"to": "+639532750785",
 							"message": "custom message",
-							"uuid": "1234567891"
+							"uuid": "12345678910"
 						}
 					]
 				}
