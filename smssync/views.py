@@ -15,8 +15,13 @@ def task(request):
 					"secret": "123456789",
 					"messages": [
 						{
-							"to": "+639975772141",
+							"to": "+639366256107",
 							"message": "sample message",
+							"uuid": "1234567891"
+						},
+						{
+							"to": "+639532750785",
+							"message": "custom message",
 							"uuid": "1234567891"
 						}
 					]
